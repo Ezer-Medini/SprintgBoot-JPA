@@ -1,5 +1,6 @@
 package edu.isgb.school.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,5 +16,6 @@ public class Departement {
 
     @ManyToOne
     @JoinColumn(name = "school_id")
+    @JsonBackReference
     private School school;
 }

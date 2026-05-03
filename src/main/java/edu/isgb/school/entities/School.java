@@ -1,11 +1,15 @@
 package edu.isgb.school.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.persistence.*;
 import lombok.Data;
+
 import java.util.List;
 
 @Entity
 @Data
+@JsonPropertyOrder({"idSchool", "name", "phone", "departements"})
 public class School {
 
     @Id
@@ -15,9 +19,7 @@ public class School {
     private String name;
     private Integer phone;
 
-    @OneToMany(mappedBy = "school", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "school")
+    @JsonManagedReference
     private List<Departement> departements;
-
-    @OneToMany(mappedBy = "school", cascade = CascadeType.ALL)
-    private List<Student> students;
 }
